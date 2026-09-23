@@ -1,5 +1,7 @@
 # 5-Minute Quickstart: High-Throughput Event Ingestion with Python
 
+![Ingest Client CI](https://github.com/Sys-tem-guy/event-ingest-quickstart/actions/workflows/test.yml/badge.svg)
+
 Learn how to stream high-throughput analytics events to the Event Ingestion API using Python. In this guide, you will configure your environment, dispatch your first ingestion batch, and harden the client against `HTTP 429 Too Many Requests` using exponential backoff with full jitter.
 
 ---
@@ -246,4 +248,3 @@ requests.exceptions.HTTPError: 429 Client Error: TOO MANY REQUESTS for url: [htt
 | Non-Retryable Errors | Never retry 400 Bad Request, 401 Unauthorized, or 422 Unprocessable Entity—these require payload or credential modifications. |
 | Circuit Ceiling | Always enforce a MAX_BACKOFF_SEC ceiling to prevent worker threads from sleeping indefinitely during extended outages. |
 | Header Precedence | Always inspect and honor the server's Retry-After response header before falling back to client-side jitter calculations. |
-EOF
