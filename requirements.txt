@@ -1,0 +1,12 @@
+# 1. Create a lightweight isolated Python sandbox
+    python3 -m venv .venv
+
+# 2. Activate that sandbox
+    source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# 3. Install dependencies inside the sandbox
+    pip install -r requirements.txt
+
+# 4. Inject runtime configuration via environment variables
+    export INGEST_API_KEY="ep_live_demo_key_77b39a"
+    export INGEST_BASE_URL="https://httpbin.org"
