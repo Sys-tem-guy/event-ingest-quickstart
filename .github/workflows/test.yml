@@ -1,0 +1,40 @@
+name: Ingest Client CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute baseline ingestion test
+        env:
+          INGEST_API_KEY: "ci_test_token_99a8b7"
+          INGEST_BASE_URL: "https://httpbin.org"
+        run: |
+          python ingest.py
+
+      - name: Execute resilient ingestion test
+        env:
+          INGEST_API_KEY: "ci_test_token_99a8b7"
+          INGEST_BASE_URL: "https://httpbin.org"
+        run: |
+          python ingest_hardened.py
