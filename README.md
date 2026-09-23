@@ -248,3 +248,4 @@ requests.exceptions.HTTPError: 429 Client Error: TOO MANY REQUESTS for url: [htt
 | Non-Retryable Errors | Never retry 400 Bad Request, 401 Unauthorized, or 422 Unprocessable Entity—these require payload or credential modifications. |
 | Circuit Ceiling | Always enforce a MAX_BACKOFF_SEC ceiling to prevent worker threads from sleeping indefinitely during extended outages. |
 | Header Precedence | Always inspect and honor the server's Retry-After response header before falling back to client-side jitter calculations. |
+
